@@ -8,12 +8,18 @@ By Victor
 
 
 #List of seats
-
 seat_a = []
+
+#phone number validation
+def phone():
+    usr_phone = ''
+    while usr_phone.isnumeric() == False:
+        usr_phone = input('What is your phone number? ') 
+
 #Fucntion to book movies
 def movies ():
     #list of movies
-    movies = ['The Batman', 'Uncharted']
+    movies = ['The Batman', 'Uncharted', 'The Lost City']
     print("Today's movies")
     print("---------------------------")
     for movie in movies:
@@ -117,6 +123,8 @@ while book_again == 'y':
     name = input("What is your name? ")
     print ("Hello", name)
 
+    usr_phone= phone()
+
     mv = movies() 
 
     print (f"You have chosen {mv}")
@@ -132,7 +140,7 @@ while book_again == 'y':
     seat_chart()
     verf = ''
     while verf not in ('y','n'):
-        verf = input(f'{name}, you have chosen to watch {mv} in the {ss} session. You chose seat {seat_a}. Is this information correct? (y/n) ')
+        verf = input(f'{name}, your number is {usr_phone} you have chosen to watch {mv} in the {ss} session. You chose seat {seat_a}. Is this information correct? (y/n) ')
 
     #verification of the information
     match verf:
@@ -146,11 +154,13 @@ while book_again == 'y':
             book_again = ''
             while book_again != 'y' or 'n':  
                 book_again = input("Would you like to book again? (y/n) ")
-            #the booking process restarts 
-            if book_again == 'y':
-                seat_a.clear()
-            #the program closes
-            elif book_again == 'n':
-                print("Thanks bye!")  
-
+                #the booking process restarts 
+                if book_again == 'y':
+                    seat_a.clear()
+                    break
+                #the program closes
+                elif book_again == 'n':
+                    print("Thanks bye!") 
+                    book_again = 'n' 
+                    exit()
 
